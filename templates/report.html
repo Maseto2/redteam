@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe de Reconocimiento Inicial</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1, h2 { color: #333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f5f5f5; }
+    tr:nth-child(even) { background-color: #fafafa; }
+  </style>
+</head>
+<body>
+  <h1>Informe de Reconocimiento Inicial</h1>
+  <h2>Resumen Ejecutivo</h2>
+  <p>Total de hallazgos: {{ data|length }}</p>
+
+  <h2>Detalle de Hallazgos</h2>
+  <table>
+  <thead>
+   <tr>
+    <th>IP</th>
+    <th>Dispositivo</th>
+    <th>Puerto</th>
+    <th>Servicio</th>
+    <th>Versión</th>
+    <th>Severidad</th>
+   </tr>
+  </thead>
+  <tbody>
+   {% for item in data %}
+   <tr>
+    <td>{{ item.ip }}</td>
+    <td>{{ item.device or '—' }}</td>
+    <td>{{ item.port }}</td>
+    <td>{{ item.service }}</td>
+    <td>{{ item.version }}</td>
+    <td>{{ item.severity }}</td>
+   </tr>
+   {% endfor %}
+  </tbody>
+
+  </table>
+
+  <h2>Recomendaciones</h2>
+  <p>Por favor, revise los hallazgos de mayor severidad y aplique los parches correspondientes.</p>
+</body>
+</html>
+EOF
